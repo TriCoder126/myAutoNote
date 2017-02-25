@@ -1,0 +1,376 @@
+<!doctype html>
+<html>
+	<head>
+		<title>AutoNote</title>
+		<link rel="icon" href="webicon3.png">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>	
+
+
+		<script type="text/javascript" src="anparser2.js"></script>
+
+		
+
+	</head>	
+	<body>
+		
+		<div id="topscreen">
+			<div id="header">
+			<table id="infoLinks"><tr>
+				<td><a class="headerLink" href="#learnScreen">learn more</a></td>
+				<td><a class="headerLink" href="#tutorialScreen">how to</a></td>
+				<td><a class="headerLink" href="#aboutScreen">about us</a></td>
+				<!-- <td><div class="headerLink">learn more</div></td>
+				<td><div class="headerLink">how to</div></td>
+				<td><div class="headerLink">about us</div></td> -->
+			</tr>
+			</table>
+				<img id="autonoteLogo"src="logo_super_small7.png" alt="logo">
+
+			</div>
+
+			<!-- <a href="index.html"><div id='workButton'>start working</div></a> -->
+			<a href="https://myautonote-145fd.firebaseapp.com/work.html"><div id='workButton'>start working</div></a>
+
+		</div>
+		
+		<div id="learnScreen" style="width:100%;margin-top:100px;padding-bottom:100px;text-align:center;">
+			<h1>Ignore the content on this site, it's a work in progress</h1>
+			<h1>How do you take notes?</h1>
+		<table id="texttable" style="width:90%;margin-left:5%;table-layout: fixed;">
+			<tr>
+				<td><h2>By Hand</h2></td>
+				<td><h2>On a document</h2></td>
+			</tr>
+			<tr>
+				<td><h3>By taking your notes on paper you have the advantage of being able to quickly orginize your notes to whatever the content requiors distraction free.<br>however</h3></td>
+				<td><h3>By taking your notes on paper you have the advantage of being able to quickly orginize your notes to whatever the content requiors distraction free.<br>however</h3></td>
+			</tr>
+		</table>
+		</div>
+		
+		
+		<div id="tutorialScreen" style="width:100%;background:#dddddd;padding-bottom:100px;padding-top:100px;">
+		<h2 style="font-size:35px;text-align:center;">Try it out for your self</h2>
+		<h3 style="font-size:28px;text-align:center;">Here are some exampled of all the ways you can quickly take your notes but still have them look great!</h3>
+		<table style="width:90%;margin-left:7.5%;table-layout: fixed;">
+			<tr>
+				<td><textarea class="leftBox" id="in1">We Will Try to Find your Headers for You</textarea></td>
+				<td><div class="rightBox" id="out1" ></div></td>
+			</tr>
+			<tr>
+				<td><textarea class="leftBox" id="in2" ></textarea></td>
+				<td><div class="rightBox" id="out2" ></div></td>
+			</tr>
+			<tr>
+				<td><textarea class="leftBox" id="in3" ></textarea></td>
+				<td><div class="rightBox" id="out3" ></div></td>
+			</tr>
+			<tr>
+				<td><textarea class="leftBox" id="in4" ></textarea></td>
+				<td><div class="rightBox" id="out4" ></div></td>
+			</tr>
+			<tr>
+				<td><textarea class="leftBox" id="in5" ></textarea></td>
+				<td><div class="rightBox" id="out5" ></div></td>
+			</tr>
+		</table>
+
+		</div>
+		
+		<div id="aboutScreen" style="padding:50px;text-align:center;">
+			<p>myAutoNote is developed by University of Illinois at Urbana Champaign students.</p>
+			<p>We wish to deliver the best product possible so if you have any comments or suggestions please contact us at myautonotesolutions@gmail.com</p>
+			<p><br>We are looking for developers so if you think have what it takes, let us know</p>
+		</div>
+
+		<div style="height:50px;background:#3949AB;text-align:center;">
+		</div>
+
+		
+
+	</body>
+
+	<style type="text/css">
+
+	body{
+		padding: 0;
+		margin: 0;
+		background-color: #f0f0f2;	
+	}
+
+	h1{
+		font-size: 40px;
+		color:#555555;
+		font-family: arial;
+	}
+
+	h2{
+		font-size: 32px;
+		color:#666666;
+		font-family: arial;
+	}
+
+	h3{
+		font-size: 24px;
+		color:#666666;
+		font-family: arial;
+	}
+
+	p{
+		font-size: 22px;
+		color:#444444;
+		font-family: arial;
+	}
+
+	#texttable tr td{
+		padding-left: 50px;
+		padding-right: 50px;
+	}
+
+	#header{
+		width:100%;
+		height: 450px;
+		padding-top: 15px;
+		/*background-image: url("paperblue.jpg");
+    	background-repeat: repeat;*/
+		background:#3949AB;
+		z-index: 5;
+		box-shadow: 0 5px 10px rgba(0,0,0,0.15), 0 5px 10px rgba(0,0,0,0.13);
+
+
+	}
+		
+	#workButton{
+		background-color:#E53935;
+		color:#ffffff;
+		width:200px;
+		height: 45px;
+		border-radius:5px;
+		box-shadow: 0 3px 6px rgba(0,0,0,0.12), 0 3px 6px rgba(0,0,0,0.10);
+		margin-left:10%;
+		font-family: arial;
+		font-size:24px;
+		text-align:center;
+		padding-top:15px;
+		padding-bottom:-5px;
+		margin-top:-30px;
+		opacity:0.99;
+		transition: all 0.4s cubic-bezier(.25,.8,.25,1);
+	}
+		
+	#workButton:hover{
+		opacity:1;
+		box-shadow: 0 5px 10px rgba(0,0,0,0.12), 0 5px 10px rgba(0,0,0,0.10);
+		transform: scale(1.05);
+		
+	}
+
+	a{
+		text-decoration:none;
+	}
+		
+	.headerLink{
+		font-size:20px;
+		color:#ffffff;
+		font-family: arial;
+		margin:25px;
+		opacity:0.7;
+		
+		transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+	}
+		
+	.headerLink:hover{
+		opacity:1;
+	}
+		
+
+	#autonoteLogo{
+		opacity: 1;
+		width:40%;
+		margin-left: 30%;
+		margin-top: 75px;
+		transition: all 2s cubic-bezier(.25,.8,.25,1);
+
+	}
+
+
+	.leftBox, .rightBox{
+		
+		width: 85%;
+		margin-top:50px;
+		font-family: arial;
+		font-size: 25px;
+		color: #444444;
+		background-color:#f9f9f9;
+		-webkit-box-sizing: border-box;
+		border: 0px solid #ffffff;
+		box-shadow: 0 3px 25px rgba(0,0,0,0.12), 0 3px 6px rgba(0,0,0,0.10);
+	}
+
+	.leftBox{
+		height: 100%;
+		padding: 40px;
+		resize: none;
+		z-index: 1;
+		outline: none;
+	}
+
+	.rightBox{
+		padding: 40px;
+		padding-left: 55px;
+		z-index: 1;
+	}
+
+	.rightBox h1, .rightBox h2, .rightBox h3, .rightBox h4, .rightBox h5, .rightBox h6 {
+		z-index: 10;
+		color:#333333;
+		font-family: arial;
+		position: relative;
+	}
+	.rightBox p{
+		color:#ff0000;
+	}
+	/*.rightBox ul{
+		list-style-position: inside;
+	}*/
+
+	/*td * { margin: 5px; }*/
+
+	.rightBox td{
+		text-align: center;
+		margin-left: -20px;
+	}
+
+	</style>
+
+	<script type="text/javascript">
+
+		$(document).ready(function() {
+
+			
+			resizeScreen();
+
+			$('#in2').text("Add a tick at the end`\nAdd another tick to make it smaller``\nKeep adding more to make sub headers```");
+			$('#in3').text("Don't forget about vocab words``\nYou should be able to write them as you always have\nword-a short definition\na short phrase: brief description explaining it");
+			$('#in4').text("Still need more structure to your notes``\n`create bullet points like this\n``Keep adding ticks to the beginning of the line to move it over\n```Use as many layers as you need\n`Then return back to the main section");
+			$('#in5').text("If you really want to get advanced you can make columns like this``\nif you want 2 columns add two ticks```\n``\nLeft Column\n`whatever follows will stay on the first column\n`move on to the next column by adding a single tick\n`\nRight Column\n`now whatever you write will appear on the right\n`to end the last column add one final tick\n`\nThen start taking notes as usual``");
+
+
+			
+			parseWithReference($('#in1').val(), 'out1');
+			reBuildDocWithReferene('out1');
+			parseWithReference($('#in2').val(), 'out2');
+			reBuildDocWithReferene('out2');
+			parseWithReference($('#in3').val(), 'out3');
+			reBuildDocWithReferene('out3');
+			parseWithReference($('#in4').val(), 'out4');
+			reBuildDocWithReferene('out4');
+			parseWithReference($('#in5').val(), 'out5');
+			reBuildDocWithReferene('out5');
+
+			$('#in1').height($('#out1').height());
+			$('#in2').height($('#out2').height());
+			$('#in3').height($('#out3').height());
+			$('#in4').height($('#out4').height());
+			$('#in5').height($('#out5').height());
+
+			$('#in1').keyup(function(evt){
+				console.log($('#in1').val());
+				parseWithReference($('#in1').val(), 'out1');
+				reBuildDocWithReferene('out1');
+			    
+			});
+
+			$('#in2').keyup(function(evt){
+				console.log($('#in2').val());
+				parseWithReference($('#in2').val(), 'out2');
+				reBuildDocWithReferene('out2');
+			    
+			});
+
+			$('#in3').keyup(function(evt){
+				console.log($('#in3').val());
+				parseWithReference($('#in3').val(), 'out3');
+				reBuildDocWithReferene('out3');
+			    
+			});
+
+			$('#in4').keyup(function(evt){
+				console.log($('#in4').val());
+				parseWithReference($('#in4').val(), 'out4');
+				reBuildDocWithReferene('out4');
+			    
+			});
+
+			$('#in5').keyup(function(evt){
+				console.log($('#in5').val());
+				parseWithReference($('#in5').val(), 'out5');
+				reBuildDocWithReferene('out5');
+			    
+			});
+
+			var boxes = $('.rightBox').toArray();
+			for(var i = 0; i < boxes.length; i++){
+				console.log(boxes[i]);
+				$(boxes[i]).height($(boxes[i]).height());
+			}
+
+
+			$(window).resize(function(){
+				resizeScreen();
+			});
+
+			function resizeScreen(){
+				var height = $(window).height();
+				var width = $(window).width();
+				//$('#header').css('height', height*0.45);
+				//$('#header').css('width', width);
+				//$('#tutorialScreen').css('width', width);
+				//$('#autonoteLogo').css('height', height*0.125);
+				$('#autonoteLogo').css('margin-left', width/2-($('#autonoteLogo').width()/2));
+				//$('#autonoteLogo').css('margin-top', height*0.35-($('#autonoteLogo').height()));
+				$('#workButton').css('margin-left', width/2-100);
+				$('#infoLinks').css('margin-left', width/2-($('#infoLinks').width()/2))
+				
+			}
+				
+			});	
+
+				
+				//var aCycle = true;
+			/*var animCycle = setInterval(function(){
+				if (aCycle){
+					$('#in1').text("We Will Try to Find your Headers for You");
+					$('#in2').text("Add a tick at the end`\nAdd another tick to make it smaller``\nKeep adding more to make sub headers```");
+					$('#in3').text("Don't forget about vocab words``\nYou should be able to write them as you always have\nword-a short definition\na short phrase: brief description explaining it");
+					$('#in4').text("Still need more structure to your notes``\n`create bullet points like this\n``Keep adding ticks to the beginning of the line to move it over\n```Use as many layers as you need\n`Then return back to the main section");
+					$('#in5').text("If you really want to get advanced you can make columns like this``\nif you want 2 columns add two ticks```\n``\nLeft Column\n`whatever follows will stay on the first column\n`move on to the next column by adding a single tick\n`\nRight Column\n`now whatever you write will appear on the right\n`to end the last column add one final tick\n`\nThen start taking notes as usual``");
+					aCycle = false;
+
+				}else{
+					$('#in1').text("We will try to find your headers for you");
+					$('#in2').text("Add a tick at the end\nAdd another tick to make it smaller\nKeep adding more to make sub headers");
+					$('#in3').text("Don't forget about vocab words``\nYou should be able to write them as you always have\nword a short definition\na short phrase  brief description explaining it");
+					$('#in4').text("Still need more structure to your notes``\ncreate bullet points like this\nKeep adding ticks to the beginning of the line to move it over\nUse as many layers as you need\nThen return back to the main section");
+					$('#in5').text("If you really want to get advanced you can make columns like this``\nif you want 2 columns add two ticks```\n\nLeft Column\n`whatever follows will stay on the first column\n`move on to the next column by adding a single tick\n\nRight Column\n`now whatever you write will appear on the right\n`to end the last column add one final tick\n\nThen start taking notes as usual``");
+					aCycle = true;
+				}
+					
+					parseWithReference($('#in1').val(), 'out1');
+					reBuildDocWithReferene('out1');
+					parseWithReference($('#in2').val(), 'out2');
+					reBuildDocWithReferene('out2');
+					parseWithReference($('#in3').val(), 'out3');
+					reBuildDocWithReferene('out3');
+					parseWithReference($('#in4').val(), 'out4');
+					reBuildDocWithReferene('out4');
+					parseWithReference($('#in5').val(), 'out5');
+					reBuildDocWithReferene('out5');
+
+			}, 1000);*/
+
+		
+	</script>
+</html>
