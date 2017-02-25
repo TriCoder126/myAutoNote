@@ -132,8 +132,19 @@
                 }
             });
         }
+        function makeEvent(text) {
+            request = gapi.client.calendar.events.quickAdd({
+                'calendarId': 'primary',
+                'text': text
+            });
+
+            request.execute(function(event) {
+                appendPre('Event created: ' + event.htmlLink);
+            });
+        }
         function findDate(noteLine) {
             console.log(1);
+            var request;
             var content = noteLine.split(' ');
             var days = [" mondays "," tuesday ", " wednesday ", " thursday ", " friday ", " saturday ", " sunday ",
                 " mon "," tues "," tue "," wed "," thu "," thur "," fri "," sat "," sun ",
@@ -145,21 +156,26 @@
                 console.log("word: "+content[word]);
                 if (content[word].toLowerCase() in days) {
                     console.log("THIS PASSES with DAYS!!!");
-                    //TODO: ADD POPUP TO OFFER CREATE CALENDAR EVENT
+                    makeEvent(content[word]);
                     return true;
+                    //TODO: ADD POPUP TO OFFER CREATE CALENDAR EVENT
+
                 }
                 if (content[word].includes('/') || content[word].includes('-')) {
+                    var text = content[word];
                     var reg = new RegExp('^(([0-9]){,2})(\/|-)(([0-9]){,2})' +
                             '((\/|-)((([0-9]){4})|(([0-9]){2})))' +
                             '?^(([0-9]){,2})(\/|-)(([0-9]){,2})((\/|-)' +
                             '((([0-9]){4})|(([0-9]){2})))?');
-                    if (content[word].match(reg)) {
+                    if (text.match(reg)) {
                         console.log("THIS PASSES with REGEX!!!");
+                        makeEvent(text);
                         return true;
                         //TODO: ADD POPUP TO OFFER CREATE CALENDAR EVENT
                     }
                 }
             }
+            return false;
         }
 
     </script>
