@@ -294,6 +294,7 @@ function onSubCardClicked(e, cf){
 
 		}else{
 			startLoad(0);
+
 			var data = {"query": `query{
 									  getNote(id:"${noteID}"){
 									    content
@@ -307,6 +308,7 @@ function onSubCardClicked(e, cf){
 				  json: true,
 				  /*data: data,*/
 				  success: function(response, status) {
+				  	
 				  		finishLoad();
 				        console.log(status);
 				        console.log(response);

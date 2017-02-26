@@ -194,15 +194,11 @@
 				  <button type="submit" id="upload-button">Upload</button>
 				</form> -->
 				<div id="closeArea" style="width:100%;height:1000px;position:absolute;background:#aaaaff;z-index:11;opacity:0;display:none;"></div>
-				<div style="width:100%;text-align:center;margin-top:20%;">
+				<div id='openNote' style="width:100%;text-align:center;margin-top:20%;">
 			      	<h2 class="startMessage" id='continueMessage' onclick="loadLastNote()">continue working on (abcdef)</h2>
 			      	
-			      	<div class="g-savetodrive"
-				         data-src="drive/blankdrivefile2"
-				         data-filename="thirdnote.txt"
-				         data-sitename="myAutoNote">
-				    </div>
-			      	<!-- <h2 class="startMessage" id='predictNewMessage' onclick="loadPredictNote">start new note for (CS 233)</h2> -->
+			      	
+			      	<h2 class="startMessage" id='predictNewMessage' onclick="createPicker()">open a note from google drive</h2>
 			      	
 			      	</div>
 				</div>
@@ -212,6 +208,13 @@
 
 				<script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
 			<script>
+
+			/*var userInput = "hello";
+			$('#openNote').append("<div class=\"g-savetodrive\""+
+				         "data-src=\"drive/blankdrivefile2\""+
+				         "data-filename=\""+userInput+"\""+
+				         "data-sitename=\"myAutoNote\">"+
+				    "</div>");*/
 
 
 			var queue = [];
@@ -449,7 +452,7 @@
 			}
 		}
 
-		function createUser(){
+		/*function createUser(){
 				//console.log(activeUser);
 				var email = activeUser.email;
 				var uid = activeUser.uid;
@@ -472,7 +475,6 @@
 				  url: "https://us-west-2.api.scaphold.io/graphql/myautonotedev"+"?query="+data.query.replace(/\t/g,'').replace(/\n/g,'')+"&variables="+data.variables.replace(/\t/g,'').replace(/\n/g,''),
 				  
 				  json: true,
-				  /*data: data,*/
 				  success: function(response, status) {
 				        console.log(status);
 				        console.log(response);
@@ -492,9 +494,9 @@
 
 				    },
 				});
-			}
+			}*/
 
-			function loginUserAndGetFolders(){
+			/*function loginUserAndGetFolders(){
 				//console.log(activeUser);
 				var email = activeUser.email;
 				var uid = activeUser.uid;
@@ -535,7 +537,6 @@
 				  url: "https://us-west-2.api.scaphold.io/graphql/myautonotedev"+"?query="+data.query.replace(/\t/g,'').replace(/\n/g,'')+"&variables="+data.variables.replace(/\t/g,'').replace(/\n/g,''),
 				  
 				  json: true,
-				  /*data: data,*/
 				  success: function(response, status) {
 				        console.log(status);
 				        console.log(response);
@@ -565,7 +566,7 @@
 					    }
 				    },
 				});
-			}
+			}*/
 
 			function updateUser(ln){
 				var data = {"query": `mutation UpdateUser($input: UpdateUserInput!) {
@@ -811,22 +812,6 @@
 				});
 			}
 
-			function ajaxCal(){
-				
-
-				$.ajax({
-				  type: "POST",
-				  url: "https://content.googleapis.com/calendar/v3/calendars/primary/events/quickAdd?text=2%2F27%2F17&key=AIzaSyD-a9IF8KKYgoC3cpgS-Al7hLQDbugrDcw",
-				  json: true,
-				  success: function(response, status) {
-				        console.log(status);
-				        console.log(response);
-				        
-				    },
-				});
-			}
-
-
 			function printValues(object){
 				for (var key in object) {
 					if(typeof object[key] == 'object'){
@@ -858,382 +843,224 @@
 
 			var CLIENT_ID = '1020202946130-7ojreg61fatq020ccnhgnal0gu8l2ls8.apps.googleusercontent.com';
 
-      // Array of API discovery doc URLs for APIs used by the quickstart
-      var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"];
+			  // Array of API discovery doc URLs for APIs used by the quickstart
+			  var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"];
 
-      // Authorization scopes required by the API; multiple scopes can be
-      // included, separated by spaces.
-      var SCOPES = 'https://www.googleapis.com/auth/drive.metadata.readonly';
+			  // Authorization scopes required by the API; multiple scopes can be
+			  // included, separated by spaces.
+			  var SCOPES = 'https://www.googleapis.com/auth/drive.metadata.readonly';
 
-      /*var authorizeButton = document.getElementById('authorize-button');
-      var signoutButton = document.getElementById('signout-button');*/
+			  /*var authorizeButton = document.getElementById('authorize-button');
+			  var signoutButton = document.getElementById('signout-button');*/
 
-      /**
-       *  On load, called to load the auth2 library and API client library.
-       */
-      function handleClientLoad() {
-        gapi.load('client:auth2', initClient);
-      }
+			  /**
+			   *  On load, called to load the auth2 library and API client library.
+			   */
+			  function handleClientLoad() {
+			    gapi.load('client:auth2', initClient);
+			  }
 
-      /**
-       *  Initializes the API client library and sets up sign-in state
-       *  listeners.
-       */
-      function initClient() {
-        gapi.client.init({
-          discoveryDocs: DISCOVERY_DOCS,
-          clientId: CLIENT_ID,
-          scope: SCOPES
-        }).then(function () {
-          // Listen for sign-in state changes.
-          gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+			  /**
+			   *  Initializes the API client library and sets up sign-in state
+			   *  listeners.
+			   */
+			  function initClient() {
+			    gapi.client.init({
+			      discoveryDocs: DISCOVERY_DOCS,
+			      clientId: CLIENT_ID,
+			      scope: SCOPES
+			    }).then(function () {
+			      // Listen for sign-in state changes.
+			      gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
 
-          // Handle the initial sign-in state.
-          updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-          //authorizeButton.onclick = handleAuthClick;
-          //signoutButton.onclick = handleSignoutClick;
-        });
-      }
+			      // Handle the initial sign-in state.
+			      updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+			      //authorizeButton.onclick = handleAuthClick;
+			      //signoutButton.onclick = handleSignoutClick;
+			    });
+			  }
 
-      /**
-       *  Called when the signed in status changes, to update the UI
-       *  appropriately. After a sign-in, the API is called.
-       */
-      function updateSigninStatus(isSignedIn) {
-        /*if (isSignedIn) {
-          authorizeButton.style.display = 'none';
-          signoutButton.style.display = 'block';
-          listFiles();
-        } else {
-          authorizeButton.style.display = 'block';
-          signoutButton.style.display = 'none';
-        }*/
-      }
+			  /**
+			   *  Called when the signed in status changes, to update the UI
+			   *  appropriately. After a sign-in, the API is called.
+			   */
+			  function updateSigninStatus(isSignedIn) {
+			    /*if (isSignedIn) {
+			      authorizeButton.style.display = 'none';
+			      signoutButton.style.display = 'block';
+			      listFiles();
+			    } else {
+			      authorizeButton.style.display = 'block';
+			      signoutButton.style.display = 'none';
+			    }*/
+			  }
 
-      /**
-       *  Sign in the user upon button click.
-       */
-      function handleAuthClick(event) {
-        gapi.auth2.getAuthInstance().signIn();
-      }
+			  /**
+			   *  Sign in the user upon button click.
+			   */
+			  function handleAuthClick(event) {
+			    gapi.auth2.getAuthInstance().signIn();
+			  }
 
-      /**
-       *  Sign out the user upon button click.
-       */
-      function handleSignoutClick(event) {
-        gapi.auth2.getAuthInstance().signOut();
-      }
+			  /**
+			   *  Sign out the user upon button click.
+			   */
+			  function handleSignoutClick(event) {
+			    gapi.auth2.getAuthInstance().signOut();
+			  }
 
-      /**
-       * Append a pre element to the body containing the given message
-       * as its text node. Used to display the results of the API call.
-       *
-       * @param {string} message Text to be placed in pre element.
-       */
-      function appendPre(message) {
-        //var pre = document.getElementById('content');
-        //1var textContent = document.createTextNode(message + '\n');
-        console.log(message);
-        //pre.appendChild(textContent);
-      }
+			  /**
+			   * Append a pre element to the body containing the given message
+			   * as its text node. Used to display the results of the API call.
+			   *
+			   * @param {string} message Text to be placed in pre element.
+			   */
+			  function appendPre(message) {
+			    //var pre = document.getElementById('content');
+			    //1var textContent = document.createTextNode(message + '\n');
+			    console.log(message);
+			    //pre.appendChild(textContent);
+			  }
 
-      /**
-       * Print files.
-       */
-      function listFiles() {
-        gapi.client.drive.files.list({
-          'pageSize': 10,
-          'fields': "nextPageToken, files(id, name)"
-        }).then(function(response) {
-          appendPre('Files:');
-          var files = response.result.files;
-          if (files && files.length > 0) {
-            for (var i = 0; i < files.length; i++) {
-              var file = files[i];
-              appendPre(file.name + ' (' + file.id + ')');
-            }
-          } else {
-            appendPre('No files found.');
-          }
-        });
-      }
+			  /**
+			   * Print files.
+			   */
+			  function listFiles() {
+			    gapi.client.drive.files.list({
+			      'pageSize': 10,
+			      'fields': "nextPageToken, files(id, name)"
+			    }).then(function(response) {
+			      appendPre('Files:');
+			      var files = response.result.files;
+			      if (files && files.length > 0) {
+			        for (var i = 0; i < files.length; i++) {
+			          var file = files[i];
+			          appendPre(file.name + ' (' + file.id + ')');
+			        }
+			      } else {
+			        appendPre('No files found.');
+			      }
+			    });
+			  }
 
-      // The Browser API key obtained from the Google Developers Console.
-      var developerKey = 'AIzaSyBLtadLS0UpmV8rlQ8Bz7pOcPy8avTbTr4';
+			  // The Browser API key obtained from the Google Developers Console.
+			  var developerKey = 'AIzaSyBLtadLS0UpmV8rlQ8Bz7pOcPy8avTbTr4';
 
-      // The Client ID obtained from the Google Developers Console. Replace with your own Client ID.
-      var clientId = "1020202946130-7ojreg61fatq020ccnhgnal0gu8l2ls8.apps.googleusercontent.com";
+			  // The Client ID obtained from the Google Developers Console. Replace with your own Client ID.
+			  var clientId = "1020202946130-7ojreg61fatq020ccnhgnal0gu8l2ls8.apps.googleusercontent.com";
 
-      // Scope to use to access user's photos.
-      var scope = ['https://www.googleapis.com/auth/drive.file'];
+			  // Scope to use to access user's photos.
+			  var scope = ['https://www.googleapis.com/auth/drive.file'];
 
-      var pickerApiLoaded = false;
-      var oauthToken;
+			  var pickerApiLoaded = false;
+			  var oauthToken;
 
-      // Use the API Loader script to load google.picker and gapi.auth.
-      function onApiLoad() {
-        gapi.load('auth', {'callback': onAuthApiLoad});
-        gapi.load('picker', {'callback': onPickerApiLoad});
-      }
+			  // Use the API Loader script to load google.picker and gapi.auth.
+			  function onApiLoad() {
+			    gapi.load('auth', {'callback': onAuthApiLoad});
+			    gapi.load('picker', {'callback': onPickerApiLoad});
+			  }
 
-      function onAuthApiLoad() {
-        window.gapi.auth.authorize(
-            {
-              'client_id': clientId,
-              'scope': scope,
-              'immediate': false
-            },
-            handleAuthResult);
-      }
+			  function onAuthApiLoad() {
+			    window.gapi.auth.authorize(
+			        {
+			          'client_id': clientId,
+			          'scope': scope,
+			          'immediate': false
+			        },
+			        handleAuthResult);
+			  }
 
-      function onPickerApiLoad() {
-        pickerApiLoaded = true;
-        createPicker();
-      }
+			  function onPickerApiLoad() {
+			    pickerApiLoaded = true;
+			    createPicker();
+			  }
 
-      function handleAuthResult(authResult) {
-        if (authResult && !authResult.error) {
-          oauthToken = authResult.access_token;
-          //createPicker();
-        }
-      }
+			  function handleAuthResult(authResult) {
+			    if (authResult && !authResult.error) {
+			      oauthToken = authResult.access_token;
+			      //createPicker();
+			    }
+			  }
 
-      // Create and render a Picker object for picking user Photos.
-      function createPicker() {
-        if (pickerApiLoaded && oauthToken) {
-          var picker = new google.picker.PickerBuilder().
-              addView(google.picker.ViewId.DOCS).
-              setOAuthToken(oauthToken).
-              setDeveloperKey(developerKey).
-              setCallback(pickerCallback).
-              setOrigin('https://myautonote-145fd.firebaseapp.com').
-              build();
-          picker.setVisible(true);
-        }
-      }
+			  // Create and render a Picker object for picking user Photos.
+			  function createPicker() {
+			    if (pickerApiLoaded && oauthToken) {
+			      var picker = new google.picker.PickerBuilder().
+			          addView(google.picker.ViewId.DOCS).
+			          setOAuthToken(oauthToken).
+			          setDeveloperKey(developerKey).
+			          setCallback(pickerCallback).
+			          setOrigin('https://myautonote-145fd.firebaseapp.com').
+			          build();
+			      picker.setVisible(true);
+			    }
+			  }
 
-      // A simple callback implementation.
-      function pickerCallback(data) {
+			  // A simple callback implementation.
+			  function pickerCallback(data) {
 
-        var url = 'nothing';
-        if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {
-          var doc = data[google.picker.Response.DOCUMENTS][0];
-          url = doc[google.picker.Document.URL];
-          console.log(data);
-          console.log(data.docs[0].id);
-          
-          /*$('iframe').attr('src', "https://drive.google.com/file/d/"+data.docs[0].id+"/preview");
-          function checkIframeLoaded() {
-    // Get a handle to the iframe element
-    var iframe = document.getElementById('iframe');
-    var iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+	        var url = 'nothing';
+	        if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {
+	        	/*startLoad(0);
+		  		finishLoad();*/
 
-    // Check if loading is complete
-    if (  iframeDoc.readyState  == 'complete' ) {
-        //iframe.contentWindow.alert("Hello");
-        iframe.contentWindow.onload = function(){
-
-            alert("I am loaded");
-            console.log($('.drive-viewer-text-page drive-viewer-focus-to-default').text());
-        };
-        // The loading is complete, call the function we want executed once the iframe is loaded
-        afterLoading();
-        return;
-    } 
-
-    // If we are here, it is not loaded. Set things up so we check   the status again in 100 milliseconds
-    window.setTimeout('checkIframeLoaded();', 100);
-}
-
-function afterLoading(){
-    alert("I am here");
-}*/
-          /*var data2 = {"description":"the real text of the note"}	
-          $.ajax({
-			  type: "POST",
-				url: "https://content.googleapis.com/drive/v2/files/"+data.docs[0].id+"?alt=json&key=AIzaSyBLtadLS0UpmV8rlQ8Bz7pOcPy8avTbTr4",
-			  json: true,
-			  data:data2,
-			  success: function(response, status) {
-			        console.log(status);
-			        console.log(response);
-			        
-			    },
-			});
-          "0B_khEWHI3aMLei03VXVwQ0I5UDA"
-folderId+"?fileId="+fileId+"&uploadType=multipart",
-          var data2 = {"description":"the hidden text 1235465"};
-          $.ajax({
-			  type: "POST",
-			  contentType: "application/json",
-			  url:"https://content.googleapis.com/drive/v2/files/0B_khEWHI3aMLeDd4dnJ0dVpxVlU?alt=json&key=AIzaSyD-a9IF8KKYgoC3cpgS-Al7hLQDbugrDcw",
-			  json: true,
-			  data:data2,
-			  success: function(response, status) {
-			        console.log(status);
-			        console.log(response);
-			        
-			    },
-			});
-*/
+				var doc = data[google.picker.Response.DOCUMENTS][0];
+				url = doc[google.picker.Document.URL];
+				console.log(data);
+				console.log(data.docs[0].id);
 
 
-function downloadFile(file, callback) {
-  if (file.downloadUrl) {
-    var accessToken = gapi.auth.getToken().access_token;
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', "https://drive.google.com/file/d/0B_khEWHI3aMLeDd4dnJ0dVpxVlU/view?usp=drive_web");
-    xhr.setRequestHeader('Authorization', 'Bearer ' + accessToken);
-    xhr.onload = function() {
-      callback(xhr.responseText);
-    };
-    xhr.onerror = function() {
-      callback(null);
-    };
-    xhr.send();
-  } else {
-    callback(null);
-  }
-}
-
-//TODO
-window.gapi.client.drive.files.update({fileId:"0B_khEWHI3aMLeDd4dnJ0dVpxVlU", uploadType:"media", description:document.getElementById("document").value}).execute();
+				//TODO
+				//window.gapi.client.drive.files.update({fileId:data.docs[0].id, uploadType:"media", description:document.getElementById("document").value}).execute();
 
 
-          /*$.ajax({
-			  type: "GET",
-			  contentType: "application/json",
-			  url:"https://www.googleapis.com/drive/v2/files/0B_khEWHI3aMLeDd4dnJ0dVpxVlU?alt=json&key=AIzaSyD-a9IF8KKYgoC3cpgS-Al7hLQDbugrDcw",
-			  json: true,
-			  success: function(response, status) {
-			        console.log(status);
-			        console.log(response);
-			        
-			    },
-			});
+				var content = data.docs[0].description;
+		        console.log(content);
+				//fs_folders[f].node.notes.edges[parseInt(id)].node.content = content;
+				$('#toolbar1 p').text(data.docs[0]name);
+		        document.getElementById("document").value = content;
+		        activeFolder = f;
+		        activeNote = id;
+		        makeDocFromKey();
+		        $('#left').css("display", "block");
+   				$('#right').css("display", "block");
+   				lastLine = 0;
+			}
 
 
-          gapi.client.init({
-          'apiKey': 'AIzaSyC-HG-BAHdaINs5flrVMDeY8IxtJgiwtmQ',
-        }).then(function() {
-        }).then(function(response) {
-          console.log(response.result.data.translations[0].translatedText);
-        }, function(reason) {
-          console.log('Error: ' + reason.result.error.message);
-        });
-      };
+	          //0B_khEWHI3aMLeDd4dnJ0dVpxVlU
+	          //AIzaSyC-HG-BAHdaINs5flrVMDeY8IxtJgiwtmQ
 
-      // Loads the JavaScript client library and invokes `start` afterwards.
-      gapi.load('client', start);
+	        function gd_updateFile(fileId, folderId, text, callback) {
 
-gapi.client.load('drive', 'v3', callback);
-          gapi.drive.files.export({fileId:"0B_khEWHI3aMLeDd4dnJ0dVpxVlU", mimeType:"text/html"});
-          
-          fileId The ID of the file.
-     * @param {string} params.mimeType
+	          const boundary = '-------314159265358979323846';
+	          const delimiter = "\r\n--" + boundary + "\r\n";
+	          const close_delim = "\r\n--" + boundary + "--";
 
+	          var contentType = "text/html";
+	          var metadata = {'mimeType': contentType,};
 
-     $.ajax({
-  url: 'https://www.googleapis.com/drive/v3/files/0B_khEWHI3aMLeDd4dnJ0dVpxVlU',
-  method: 'PATCH',
-  data: {
-      apiKey: 'AIzaSyD-a9IF8KKYgoC3cpgS-Al7hLQDbugrDcw',
-      uploadType: 'media',
-      description:'new description from javascript'
-  }
-}).success(function(response) {
-      console.log(response);
-  }).
-  error(function(response) {
-  console.log(response);
-  return false;
-});*/
+	          var multipartRequestBody =
+	              delimiter +  'Content-Type: application/json\r\n\r\n' +
+	              JSON.stringify(metadata) +
+	              delimiter + 'Content-Type: ' + contentType + '\r\n' + '\r\n' +
+	              text +
+	              close_delim;
 
+	          if (!callback) { callback = function(file) { console.log("Update Complete ",file) }; }
 
-          //0B_khEWHI3aMLeDd4dnJ0dVpxVlU
-          //AIzaSyC-HG-BAHdaINs5flrVMDeY8IxtJgiwtmQ
+	          gapi.client.request({
+	              'path': '/upload/drive/v2/files/'+folderId+"?fileId="+fileId+"&uploadType=multipart",
+	              'method': 'PUT',
+	              'params': {'fileId': fileId, 'uploadType': 'multipart'},
+	              'headers': {'Content-Type': 'multipart/mixed; boundary="' + boundary + '"'},
+	              'body': multipartRequestBody,
+	              callback:callback,
+	          });
+	        }
 
-        }
-        //var message = 'You picked: ' + url;
-        //document.getElementById('result').innerHTML = message;
-
-      }
-
-      /*var picker = new google.picker.PickerBuilder().
-        addView(google.picker.ViewId.VIDEO_SEARCH).
-        enableFeature(google.picker.Feature.NAV_HIDDEN).
-        setDeveloperKey(developerKey).
-        setCallback(pickerCallback).
-        build();*/
-
-        /*function createNewFile(location, title, description) {
-          gapi.client.load('drive', 'v2', function() {
-              var request = gapi.client.request({
-                  'path': '/drive/v2/files'+location,
-                  'method': 'POST',
-                  'body':{
-                      "title" : title,
-                      "description" : description
-                  }
-              });
-              request.execute(function(resp) { console.log(resp); });
-          });
-      }
-createNewFile("","new file 123abc","none2");*/
-        function gd_updateFile(fileId, folderId, text, callback) {
-
-          const boundary = '-------314159265358979323846';
-          const delimiter = "\r\n--" + boundary + "\r\n";
-          const close_delim = "\r\n--" + boundary + "--";
-
-          var contentType = "text/html";
-          var metadata = {'mimeType': contentType,};
-
-          var multipartRequestBody =
-              delimiter +  'Content-Type: application/json\r\n\r\n' +
-              JSON.stringify(metadata) +
-              delimiter + 'Content-Type: ' + contentType + '\r\n' + '\r\n' +
-              text +
-              close_delim;
-
-          if (!callback) { callback = function(file) { console.log("Update Complete ",file) }; }
-
-          gapi.client.request({
-              'path': '/upload/drive/v2/files/'+folderId+"?fileId="+fileId+"&uploadType=multipart",
-              'method': 'PUT',
-              'params': {'fileId': fileId, 'uploadType': 'multipart'},
-              'headers': {'Content-Type': 'multipart/mixed; boundary="' + boundary + '"'},
-              'body': multipartRequestBody,
-              callback:callback,
-          });
-        }
-
-        function gd_getFile(fileId, folderId, callback) {
-
-          const boundary = '-------314159265358979323846';
-          const delimiter = "\r\n--" + boundary + "\r\n";
-          const close_delim = "\r\n--" + boundary + "--";
-
-          var contentType = "text/html";
-          var metadata = {'mimeType': contentType,};
-
-          var multipartRequestBody =
-              delimiter +  'Content-Type: application/json\r\n\r\n' +
-              JSON.stringify(metadata) +
-              delimiter + 'Content-Type: ' + contentType + '\r\n' + '\r\n' +
-              text +
-              close_delim;
-
-          if (!callback) { callback = function(file) { console.log("Update Complete ",file) }; }
-
-          gapi.client.request({
-              'path': '/upload/drive/v2/files/'+folderId+"?fileId="+fileId,
-              'method': 'GET',
-              
-              
-              callback:callback,
-          });
-        }
+       
     </script>
     <script type="text/javascript" src="https://apis.google.com/js/api.js?onload=onApiLoad"></script>
     <script async defer src="https://apis.google.com/js/api.js"
