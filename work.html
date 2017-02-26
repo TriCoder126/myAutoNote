@@ -21,12 +21,12 @@
 		<!--<script src="https://apis.google.com/js/platform.js" async defer></script>-->
 		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-<<<<<<< HEAD
+
 		<script rel="stylesheet" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></script>
-=======
+
 		<script type="text/javascript" src="https://apis.google.com/js/api.js?onload=onApiLoad"></script>
     <script src="https://apis.google.com/js/client:plusone.js" type="text/javascript"></script>
->>>>>>> 5d561df80832e5045a2ea46ad0999839883661d4
+
 
 
 
@@ -84,6 +84,7 @@
 
 		<div id='side'></div>
 
+<<<<<<< HEAD
 		<!-- <div class="actions">
 			<img id="icon" class="color" src="ic_bubble_chart_white_48dp_1x.png" alt="vertical layout">
 			<img id="icon" class="storage" onclick="deleteStorage()" src="ic_storage_white_48dp_1x.png" alt="vertical layout">
@@ -103,6 +104,28 @@
 				</div>
 					<img class="settings" id="settingsIcon" src="settingsIcon.png">
 					<img src="split.png" style="float:right;right:9.75%;margin:10px;z-index:9;position: absolute;width:30px;opacity: 0.875;">
+=======
+	      	<div id="header">
+	      		<a href="https://myautonote.com">
+					<div id="cflogo" class="shadow">
+						<img id="logo" src="logo_super_small7.png" alt="logo">
+					</div>
+				</a>
+				<div id="cf2">
+					<img class="top" id="drawer_button" src="ic_menu_white_48dp_1x.png" alt="drawer" style="cursor:pointer;width:40px;height:40px;opacity:1;z-index:9;">
+					<img class="bottom" id="drawer_button" src="ic_arrow_back_white_48dp_1x.png" alt="drawer" style="cursor:pointer;width:40px;height:40px;opacity:0;z-index:0;">
+				</div>
+				<!-- <div class = "container-fluid"> -->
+					<!-- <div id="userIconSpacer"> -->
+						<img class="user" id="userIcon">
+					<!-- </div> -->
+						<img class="settings" id="settingsIcon" src="settingsIcon.png">
+						<img src="split.png" style="float:right;right:9.75%;margin:10px;z-index:9;position: absolute;width:30px;opacity: 0.875;">
+					</div>
+				<!-- </div> -->
+				
+
+>>>>>>> eeb94b486d26034c1c2727e650ff446bcad6e15f
 				</div>
 		</div>
 		<a href="https://myautonote.com">
@@ -1175,32 +1198,33 @@
 			  // A simple callback implementation.
 			  function pickerCallback(data) {
 
-	        var url = 'nothing';
-	        if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {
-	        	/*startLoad(0);
-		  		finishLoad();*/
+		        var url = 'nothing';
+		        if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {
+		        	/*startLoad(0);
+			  		finishLoad();*/
 
-				var doc = data[google.picker.Response.DOCUMENTS][0];
-				url = doc[google.picker.Document.URL];
-				console.log(data);
-				console.log(data.docs[0].id);
-
-
-				//TODO
-				//window.gapi.client.drive.files.update({fileId:data.docs[0].id, uploadType:"media", description:document.getElementById("document").value}).execute();
+					var doc = data[google.picker.Response.DOCUMENTS][0];
+					url = doc[google.picker.Document.URL];
+					console.log(data);
+					console.log(data.docs[0].id);
 
 
-				var content = data.docs[0].description;
-		        console.log(content);
-				//fs_folders[f].node.notes.edges[parseInt(id)].node.content = content;
-				$('#toolbar1 p').text(data.docs[0]name);
-		        document.getElementById("document").value = content;
-		        activeFolder = f;
-		        activeNote = id;
-		        makeDocFromKey();
-		        $('#left').css("display", "block");
-   				$('#right').css("display", "block");
-   				lastLine = 0;
+					//TODO
+					//window.gapi.client.drive.files.update({fileId:data.docs[0].id, uploadType:"media", description:document.getElementById("document").value}).execute();
+
+
+					var content = data.docs[0].description;
+			        console.log(content);
+					//fs_folders[f].node.notes.edges[parseInt(id)].node.content = content;
+					$('#toolbar1 p').text(data.docs[0].name);
+			        document.getElementById("document").value = content;
+			        //activeFolder = f;
+			        //activeNote = id;
+			        makeDocFromKey();
+			        $('#left').css("display", "block");
+	   				$('#right').css("display", "block");
+	   				lastLine = 0;
+				}
 			}
 
 

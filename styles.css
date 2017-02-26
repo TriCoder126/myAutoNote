@@ -778,11 +778,11 @@ height: -moz-fit-content;
 	left:53.5%;
 }*/
 
-#iconSpacer {
+/*#iconSpacer {
 	display: flex;
 
 	justify-content: space-around;
-}
+}*/
 
 #icon:hover{
 	opacity: 0.99;
