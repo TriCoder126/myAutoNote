@@ -155,7 +155,7 @@ td * { margin: 5px; }
 
 .clickednotecard{
 	box-shadow: 0 7px 20px rgba(0,0,0,0.2), 0 5px 10px rgba(0,0,0,0.2);
-	margin-bottom: 0px;
+	margin-bottom: 0;
 }
 
 
@@ -248,8 +248,8 @@ height: -moz-fit-content;
 	z-index: 11;
     border-radius: 50%;
     /*width: 25%;*/
-    width: 0px;
-    height: 0px;
+    width: 0;
+    height: 0;
     margin-top: 15px;
     margin-left: 10%;
     box-shadow: 0 3px 7px rgba(0,0,0,0.12), 0 3px 6px rgba(0,0,0,0.10);
@@ -344,7 +344,7 @@ height: -moz-fit-content;
 	color: #555555;
 	background-color:#fdfdfd;
 	-webkit-box-sizing: border-box;
-	border: 0px solid #ffffff;
+	border: 0 solid #ffffff;
 	box-shadow: 0 1px 4px rgba(0,0,0,0.10), 0 1px 4px rgba(0,0,0,0.10);
 }
 
@@ -357,7 +357,7 @@ height: -moz-fit-content;
 	opacity: 0.50;
 	cursor:pointer;
 	background:#ffffff;
-	border-radius: 17.5px;
+	border-radius: 18px;
 	/*
 	border-radius: 35px;
 	box-shadow: 0 1px 4px rgba(0,0,0,0.10), 0 1px 4px rgba(0,0,0,0.10);*/
@@ -382,12 +382,12 @@ height: -moz-fit-content;
 	-webkit-box-sizing: border-box;
 	transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 	
-	border: 0px solid #ffffff;
+	border: 0 solid #ffffff;
 	box-shadow: 0 1px 4px rgba(0,0,0,0.10), 0 1px 4px rgba(0,0,0,0.10);
 }
 
 #toolbar1 p{
-	margin-top: 0px;
+	margin-top: 0;
 }
 
 #toolbar1 p:hover{
@@ -405,7 +405,7 @@ height: -moz-fit-content;
 	color: #444444;
 	background-color:#f9f9f9;
 	-webkit-box-sizing: border-box;
-	border: 0px solid #ffffff;
+	border: 0 solid #ffffff;
 	box-shadow: 0 3px 25px rgba(0,0,0,0.12), 0 3px 6px rgba(0,0,0,0.10);
 	/*box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.15);*/
 	/*overflow-y: scroll;*/
@@ -466,7 +466,7 @@ height: -moz-fit-content;
 	margin-bottom: 2px;
 	opacity: 0.4;
 	height: 15px;
-	width: 17.5px;
+	width: 18px;
 	transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
 
@@ -613,9 +613,9 @@ height: -moz-fit-content;
 	/*margin-right:8px;*/
 	z-index:12;
 	position: absolute;
-	width:37.5px;
+	width:38px;
 	opacity: 0.875;
-	border-radius:18.75px;
+	border-radius:19px;
 	box-shadow: 0 3px 6px rgba(0,0,0,0.12), 0 3px 6px rgba(0,0,0,0.10);
 	transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 	cursor:pointer;
@@ -646,8 +646,8 @@ height: -moz-fit-content;
 }
 
 #userCard, #settingsCard{
-	width:0px;
-	height:0px;
+	width:0;
+	height:0;
 	margin-top: 10px;
 	background:#efefef;
 	float:right;
@@ -670,8 +670,8 @@ height: -moz-fit-content;
 }
 
 #colorIcon{
-	width:37.5px;
-	border-radius:18.75px;
+	width:37px;
+	border-radius:19px;
 }
 
 
@@ -706,7 +706,7 @@ height: -moz-fit-content;
 #logo{
 	margin-left: 100px;
 	width: 175px;
-	height: 44.57px;
+	height: 45px;
 	position:absolute;
 		left:0;
 }
@@ -778,9 +778,11 @@ height: -moz-fit-content;
 	left:53.5%;
 }*/
 
+#iconSpacer {
+	display: flex;
 
-
-
+	justify-content: space-around;
+}
 
 #icon:hover{
 	opacity: 0.99;

@@ -40,9 +40,12 @@ function makeColorPicker(){
 	$('.colorcircle').click(function(){
 		var id = $(this).attr('id');
 		$('#header').css("background-color", $('#' + id).css("background-color"));
-		save('color', $('#' + id).css("background-color"));
+		//save('color', $('#' + id).css("background-color"));
 		reBuildDoc();
-		//makeDoc(document.getElementById("document").value.split('\n'), 0);
+		var userId = firebase.auth().currentUser.uid;
+		firebase.database().ref('users/' + userId).set({
+			'color' : id
+		});
 	});
 }
 
