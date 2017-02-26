@@ -320,6 +320,7 @@ function onSubCardClicked(e, cf){
 				        makeDocFromKey();
 				        $('#left').css("display", "block");
 	       				$('#right').css("display", "block");
+	       				lastLine = 0;
 
 				        //makeDoc(document.getElementById("document").value.split('\n'), 0);
 				    },
@@ -370,6 +371,7 @@ function onSubCardClicked(e, cf){
 				        console.log(response.data.createNote.changedNote);
 						console.log("from database");
 						finishLoad();
+						lastLine = 0;
 						var node = {node: response.data.createNote.changedNote}
 						node.node.Title = t;
 						node.node.content = c;
