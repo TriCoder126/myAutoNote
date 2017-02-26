@@ -4,6 +4,7 @@ var activeLine = 0;
 var currentTable = -1;
 var currentTableColumns = -1;
 var actualDocText = "";
+var lastLine = 0;
 
 function makeDocFromKey(){
 		//TODO
@@ -16,7 +17,11 @@ function makeDocFromKey(){
 		
 		scrollFromType(doctext, curline);
 
-
+		if(curline != lastLine){
+			console.log(findDate(doctext[lastLine]));
+			lastLine = curline;
+		}
+		console.log(findDate(doctext[curline]));
 
 		if(activeFolder >= 0 && activeNote >= 0){
 			if(content != fs_folders[activeFolder].node.notes.edges[parseInt(activeNote)].node.content)

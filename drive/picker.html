@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Google Picker Example</title>
+
+    <script type="text/javascript">
+
+      // The Browser API key obtained from the Google Developers Console.
+      var developerKey = 'AIzaSyBLtadLS0UpmV8rlQ8Bz7pOcPy8avTbTr4';
+
+      // The Client ID obtained from the Google Developers Console. Replace with your own Client ID.
+      var clientId = "1020202946130-7ojreg61fatq020ccnhgnal0gu8l2ls8.apps.googleusercontent.com"
+
+      // Scope to use to access user's photos.
+      var scope = ['https://www.googleapis.com/auth/drive'];
+
+      var pickerApiLoaded = false;
+      var oauthToken;
+
+      // Use the API Loader script to load google.picker and gapi.auth.
+      function onApiLoad() {
+        gapi.load('auth', {'callback': onAuthApiLoad});
+        gapi.load('picker', {'callback': onPickerApiLoad});
+      }
+
+      function onAuthApiLoad() {
+        window.gapi.auth.authorize(
+            {
+              'client_id': clientId,
+              'scope': scope,
+              'immediate': false
+            },
+            handleAuthResult);
+      }
+
+      function onPickerApiLoad() {
+        pickerApiLoaded = true;
+        createPicker();
+      }
+
+      function handleAuthResult(authResult) {
+        if (authResult && !authResult.error) {
+          oauthToken = authResult.access_token;
+          createPicker();
+        }
+      }
+
+      // Create and render a Picker object for picking user Photos.
+      function createPicker() {
+        /*if (pickerApiLoaded && oauthToken) {
+          var picker = new google.picker.PickerBuilder().
+              addView(google.picker.ViewId.DOCS).
+              setOAuthToken(oauthToken).
+              setDeveloperKey(developerKey).
+              setCallback(pickerCallback).
+              setOrigin('https://myautonote-145fd.firebaseapp.com').
+              build();
+          picker.setVisible(true);
+        }*/
+      }
+
+      // A simple callback implementation.
+      function pickerCallback(data) {
+
+        /*var url = 'nothing';
+        if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {
+          var doc = data[google.picker.Response.DOCUMENTS][0];
+          url = doc[google.picker.Document.URL];
+          console.log(data);
+        }
+        var message = 'You picked: ' + url;
+        document.getElementById('result').innerHTML = message;*/
+
+      }
+
+/*
+
+      var picker = new google.picker.PickerBuilder().
+        addView(google.picker.ViewId.VIDEO_SEARCH).
+        enableFeature(google.picker.Feature.NAV_HIDDEN).
+        setDeveloperKey(developerKey).
+        setCallback(pickerCallback).
+        build();*/
+
+        /*function createNewFile(location, title, description) {
+          gapi.client.load('drive', 'v2', function() {
+              var request = gapi.client.request({
+                  'path': '/drive/v2/files'+location,
+                  'method': 'POST',
+                  'body':{
+                      "title" : title,
+                      "description" : description
+                  }
+              });
+              request.execute(function(resp) { console.log(resp); });
+          });
+      }
+createNewFile("","new file 123abc","none2");*/
+        function gd_updateFile(fileId, folderId, text, callback) {
+
+          const boundary = '-------314159265358979323846';
+          const delimiter = "\r\n--" + boundary + "\r\n";
+          const close_delim = "\r\n--" + boundary + "--";
+
+          var contentType = "text/html";
+          var metadata = {'mimeType': contentType,};
+
+          var multipartRequestBody =
+              delimiter +  'Content-Type: application/json\r\n\r\n' +
+              JSON.stringify(metadata) +
+              delimiter + 'Content-Type: ' + contentType + '\r\n' + '\r\n' +
+              text +
+              close_delim;
+
+          if (!callback) { callback = function(file) { console.log("Update Complete ",file) }; }
+
+          gapi.client.request({
+              'path': '/upload/drive/v2/files/'+folderId+"?fileId="+fileId+"&uploadType=multipart",
+              'method': 'PUT',
+              'params': {'fileId': fileId, 'uploadType': 'multipart'},
+              'headers': {'Content-Type': 'multipart/mixed; boundary="' + boundary + '"'},
+              'body': multipartRequestBody,
+              callback:callback,
+          });
+        }
+
+        function gd_getFile(fileId, folderId, callback) {
+
+          const boundary = '-------314159265358979323846';
+          const delimiter = "\r\n--" + boundary + "\r\n";
+          const close_delim = "\r\n--" + boundary + "--";
+
+          var contentType = "text/html";
+          var metadata = {'mimeType': contentType,};
+
+          var multipartRequestBody =
+              delimiter +  'Content-Type: application/json\r\n\r\n' +
+              JSON.stringify(metadata) +
+              delimiter + 'Content-Type: ' + contentType + '\r\n' + '\r\n' +
+              text +
+              close_delim;
+
+          if (!callback) { callback = function(file) { console.log("Update Complete ",file) }; }
+
+          gapi.client.request({
+              'path': '/upload/drive/v2/files/'+folderId+"?fileId="+fileId,
+              'method': 'GET',
+              
+              
+              callback:callback,
+          });
+        }
+        /*function reqListener () {
+          console.log(this.responseText);
+        }
+        var oReq = new XMLHttpRequest();
+        oReq.addEventListener("load", reqListener);
+        oReq.open("GET", "https://drive.google.com/viewerng/text?id=ACFrOgAqYlEJmLf6P9W_e0109QoPjhW7AyRhTtOZu3nBl_6AhGDNb1_HpIMqq7rTtA-dExPSK5rmW_zxSsDs06G9wHXQ3zCkdy85Z3zohXDWsUbNNBuEchHNJ8ImyTo%3D&u=0&page=0
+        ");
+        oReq.send();*/
+        //https://drive.google.com/viewerng/text?id=ACFrOgAqYlEJmLf6P9W_e0109QoPjhW7AyRhTtOZu3nBl_6AhGDNb1_HpIMqq7rTtA-dExPSK5rmW_zxSsDs06G9wHXQ3zCkdy85Z3zohXDWsUbNNBuEchHNJ8ImyTo%3D&u=0&page=0
+
+
+      /*function reqListener () {
+          console.log(this.responseText);
+        }
+        var oReq = new XMLHttpRequest();
+        oReq.addEventListener("load", reqListener);
+        oReq.open("GET", "https://www.googleapis.com/upload/drive/v3?uploadType=media HTTP/1.1");
+        oReq.send();*/
+        
+
+        /*$.ajax({
+          type: "POST",
+          url: "https://www.googleapis.com/upload/drive/v3?uploadType=media HTTP/1.1",
+          json: true,
+          contentType: "image/jpeg",
+          Authorization: "Bearer AIzaSyBLtadLS0UpmV8rlQ8Bz7pOcPy8avTbTr4",
+          success: function(response, status) {
+                console.log(status);
+                console.log(response);
+            console.log("from database");
+            },
+        });*/
+      
+
+    </script>
+  </head>
+  <body>
+    <div id="result"></div>
+
+    <!-- The Google API Loader script. -->
+    <script type="text/javascript" src="https://apis.google.com/js/api.js?onload=onApiLoad"></script>
+    <script src="https://apis.google.com/js/client:plusone.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript">
+
+    </script>
+    <div style="width:50px;height:50px;background:#999999" class></div>
+    <div class="g-savetodrive"
+         data-src="blankdrivefile2"
+         data-filename="secondnote.txt"
+         data-sitename="My Company Name">
+    </div>
+  </body>
+</html>
+
