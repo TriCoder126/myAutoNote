@@ -20,6 +20,7 @@
 		<!--<script src="https://apis.google.com/js/platform.js" async defer></script>-->
 		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+		<script rel="stylesheet" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></script>
 
 
 
@@ -40,7 +41,7 @@
 	<body>
 
 
-	<img id="loadingIcon", src="webicon.gif" style="width:44.57px;float:right;margin5px;margin-right:-50px;z-index:50;opacity:0;position:relative;">
+	<img id="loadingIcon" src="webicon.gif" style="width:44.57px;float:right;margin5px;margin-right:-50px;z-index:50;opacity:0;position:relative;">
 
 		<div id="loginScreen" >
 			<!-- <video  id="backgroundVideo" autoplay="autoplay" width="1000px">
@@ -67,10 +68,12 @@
 				<p id="userEmail" style="font-size: 17px;color: #555555;font-family: arial;margin-top:17.5px;">asdfsdga</p>
 				<p id="logout" style="font-size: 18px;color: #039bdf;font-family: arial;margin-top:-10px;display:none;">logout</p>
 			</div>
-			<img class="user" id="userIcon">
+			<!--<div id="iconSpacer">
+				<img class="user" id="userIcon">
 
-			<img class="settings" id="settingsIcon" src="settingsIcon.png">
-			<img src="split.png" style="float:right;right:9.75%;margin:10px;z-index:9;position: absolute;width:30px;opacity: 0.875;">
+				<img class="settings" id="settingsIcon" src="settingsIcon.png">
+				<img src="split.png" style="float:right;right:9.75%;margin:10px;z-index:9;position: absolute;width:30px;opacity: 0.875;">
+			</div>-->
 			<div id="settingsCard">
 				<!-- <ul style="list-style-type: none;"> -->
 					<p id="setting" class="color">change theme</p>
@@ -91,22 +94,29 @@
 		    </div> -->
 		    <p class="user" id="username"></p>
 
-		
+
 
 	      	<div id="header">
 
-	  		<div id="cf2">
-	    		<img class="top" id="drawer_button" src="ic_menu_white_48dp_1x.png" alt="drawer" style="cursor:pointer;width:40px;height:40px;opacity:1;z-index:9;">
-	    		<img class="bottom" id="drawer_button" src="ic_arrow_back_white_48dp_1x.png" alt="drawer" style="cursor:pointer;width:40px;height:40px;opacity:0;z-index:0;">
-	    	</div>
+				<div id="cf2">
+					<img class="top" id="drawer_button" src="ic_menu_white_48dp_1x.png" alt="drawer" style="cursor:pointer;width:40px;height:40px;opacity:1;z-index:9;">
+					<img class="bottom" id="drawer_button" src="ic_arrow_back_white_48dp_1x.png" alt="drawer" style="cursor:pointer;width:40px;height:40px;opacity:0;z-index:0;">
+				</div>
+				<div class = "container-fluid">
+					<div id="userIconSpacer">
+						<img class="user" id="userIcon">
+					</div>
+						<img class="settings" id="settingsIcon" src="settingsIcon.png">
+						<img src="split.png" style="float:right;right:9.75%;margin:10px;z-index:9;position: absolute;width:30px;opacity: 0.875;">
+					</div>
+				</div>
+				<a href="https://myautonote.com">
+					<div id="cflogo" class="shadow">
+						<img id="logo" src="logo_super_small7.png" alt="logo">
+					</div>
+				</a>
 
-	    	<a href="https://myautonote.com">
-		    	<div id="cflogo" class="shadow">
-		    		<img id="logo" src="logo_super_small7.png" alt="logo">
-		    	</div>
-	    	</a>
-
-	      	</div>
+				</div>
 
 	      	<!-- <table style="width:75%;margin-left:12.5%;margin-top:5%;">
 	      		<tr>
@@ -798,7 +808,7 @@
 				        saveSecure("usersfolders", JSON.stringify(fs_folders));
 				        
 				        //console.log(folderTitles);
-				    },
+				    }
 				});
 			}
 
